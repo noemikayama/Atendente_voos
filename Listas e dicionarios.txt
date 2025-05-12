@@ -1,0 +1,11 @@
+passageiros = []
+voos = {}
+voos = {'numero do voo' : [cidade origem, cidade destino, nº escalas, preço, lugares disponíveis, [passageiros]]}
+
+passagens = []
+passageiros = {}
+passageiros = {'CPF' : [nome, telefone, [passagens (nº do voo)]]}
+
+voos_disponiveis = []
+voos_disponiveis = [numero do voo] #com lugares disponíveis até tornar zero
+
