@@ -8,4 +8,3 @@ passageiros = {'CPF' : [nome, telefone, [passagens (nº do voo)]]}
 
 voos_disponiveis = []
 voos_disponiveis = [numero do voo] #com lugares disponíveis até tornar zero
-
