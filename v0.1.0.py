@@ -116,8 +116,8 @@ while (menu1 >=1 and menu1 <= 6) :
         for num_voo, dados in voos.items() :
             if (consulta_voo == num_voo) :
                 for r in range(len(dados[5])) :
-                    print(f"\n Passageiro(a) {r+1}: {dados[5][r]}")
-                print(f"\n O voô {num_voo} possui {dados[4]} lugares disponíveis")
+                    print(f"\n\t Passageiro(a) {r+1}: {dados[5][r]}")
+                print(f"\n\t O voô {num_voo} possui {dados[4]} lugares disponíveis")
 
 
     if (menu1 == 5) :
