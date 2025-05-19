@@ -132,6 +132,7 @@ while (menu1 >=1 and menu1 <= 6) :
 
         if (cpf in passageiros.keys()) :
             num_voo2 = int(input("\n Insira o número do voô: "))
+            passageiros[cpf]["passagens"].append(num_voo2)
             # inserir o voo na lista [passagens] dentro de {passageiros}
 
         else:
