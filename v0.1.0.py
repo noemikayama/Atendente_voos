@@ -132,9 +132,11 @@ while (menu1 >=1 and menu1 <= 6) :
 
         if (cpf in passageiros.keys()) :
             num_voo2 = int(input("\n Insira o número do voô: "))
-            passageiros[cpf]["passagens"].append(num_voo2)
-            # inserir o voo na lista [passagens] dentro de {passageiros}
-
+            while (num_voo2 in passageiros[cpf][passagens]):
+                print(f"Já existe um voo com este número, insira outro por favor!")
+            else:
+                passageiros[cpf][passagens].append(num_voo2)
+            
         else:
             qt_voos = int(input("\n Quantos voôs deseja comprar: "))
 
