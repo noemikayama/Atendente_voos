@@ -40,6 +40,7 @@ while (menu1 >=1 and menu1 <= 6) :
             voos[num_voo1] = [cidade_origem, cidade_destino, num_escalas, preco, lugares_disponiveis, passageiros]
 
 
+
     if (menu1 == 2) :
         print("\n\n\t\t -*- CONSULTAR VOÔ -*- ")
         print("\n\n\t Como deseja consultar o voô? ")
@@ -146,6 +147,9 @@ while (menu1 >=1 and menu1 <= 6) :
                     passageiros[cpf] = [nome, [num_voo3]]
                 else :
                     passageiros[cpf][2][n + 1] = num_voo3
+
+        # inserir redução de lugares disponíveis
+        
 
     print("\n\n\t\t -*- PROGRAMA DE ATENDENTE DE VOÔS -*-")
 
