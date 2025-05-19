@@ -146,7 +146,7 @@ while (menu1 >=1 and menu1 <= 6) :
                 while (num_voo3 < 100 or num_voo3 > 99999):
                     print("\n => NÚMERO DE VOÔ INVÁLIDO! INSIRA UM NÚMERO DE 100 A 9999 <= ")
                     num_voo3 = int(input("\n\n Insira o número do voô: "))
-                if num_voo3 in voos:
+                if num_voo3 in voos.keys():
                     if voos[num_voo3][4] > 0:
                         voos[num_voo3][4] -= 1
                         voos[num_voo3][5].append(cpf)
