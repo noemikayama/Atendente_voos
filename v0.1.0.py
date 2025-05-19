@@ -149,18 +149,16 @@ while (menu1 >=1 and menu1 <= 6) :
                 if num_voo3 in voos:
                     if voos[num_voo3][4] > 0:
                         voos[num_voo3][4] -= 1
-                        voos[num_voo3][5].append(nome)
+                        voos[num_voo3][5].append(cpf)
         
                         if n == 0:
-                            passageiros[cpf] = [nome, [num_voo3]]
+                            passageiros[cpf] = [cpf, [num_voo3]]
                         else:
                             passageiros[cpf][1].append(num_voo3)
                 else:
                     print("\n => VOÔ LOTADO! NÃO HÁ LUGARES DISPONÍVEIS <= ")
-                    continue
     else:
         print("\n => VOÔ NÃO ENCONTRADO <= ")
-        continue
 
 
     print("\n\n\t\t -*- PROGRAMA DE ATENDENTE DE VOÔS -*-")
