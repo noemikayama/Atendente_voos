@@ -35,9 +35,9 @@ while (menu1 >=1 and menu1 <= 6) :
             num_escalas = int(input("\n Insira o número de escalas: "))
             preco = float(input("\n Insira o valor: R$"))
             lugares_disponiveis = int(input("\n Insira o número de lugares disponíveis: "))
-            passageiros = []
+            passagens = []
 
-            voos[num_voo1] = [cidade_origem, cidade_destino, num_escalas, preco, lugares_disponiveis, passageiros]
+            voos[num_voo1] = [cidade_origem, cidade_destino, num_escalas, preco, lugares_disponiveis, passagens]
 
 
 
@@ -149,7 +149,7 @@ while (menu1 >=1 and menu1 <= 6) :
                     passageiros[cpf][2][n + 1] = num_voo3
 
         # inserir redução de lugares disponíveis
-        
+
 
     print("\n\n\t\t -*- PROGRAMA DE ATENDENTE DE VOÔS -*-")
 
