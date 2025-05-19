@@ -146,11 +146,21 @@ while (menu1 >=1 and menu1 <= 6) :
                 while (num_voo3 < 100 or num_voo3 > 99999):
                     print("\n => NÚMERO DE VOÔ INVÁLIDO! INSIRA UM NÚMERO DE 100 A 9999 <= ")
                     num_voo3 = int(input("\n\n Insira o número do voô: "))
-                if (n == 0) :
-                    passageiros[cpf] = [nome, [num_voo3]]
-                else :
-                    passageiros[cpf][2][n + 1] = num_voo3
-
+                if num_voo3 in voos:
+    if voos[num_voo3][4] > 0:
+        voos[num_voo3][4] -= 1
+        voos[num_voo3][5].append(nome)
+        
+        if n == 0:
+            passageiros[cpf] = [nome, [num_voo3]]
+        else:
+            passageiros[cpf][1].append(num_voo3)
+    else:
+        print("\n => VOÔ LOTADO! NÃO HÁ LUGARES DISPONÍVEIS <= ")
+        continue
+else:
+    print("\n => VOÔ NÃO ENCONTRADO <= ")
+    continue
         # inserir redução de lugares disponíveis
 
 
