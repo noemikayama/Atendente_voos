@@ -133,7 +133,7 @@ while (menu1 >=1 and menu1 <= 6) :
         if (cpf in passageiros.keys()) :
             num_voo2 = int(input("\n Insira o número do voô: "))
             while (num_voo2 in passageiros[cpf][passagens]):
-                print(f"Já existe um voo com este número, insira outro por favor!")
+                print(f"\n => VOÔ JÁ FOI COMPRADO! INSIRA OUTRO CÓDIGO, POR FAVOR <=")
             else:
                 passageiros[cpf][passagens].append(num_voo2)
             
@@ -142,23 +142,24 @@ while (menu1 >=1 and menu1 <= 6) :
 
             for n in range(qt_voos) :
                 nome = input("\n Insira o nome completo do passageiro(a): ")
-                num_voo3 = int(input("\n Insira o número do voô: "))
+                num_voo3 = int(input("\n Insira o código do voô: "))
                 while (num_voo3 < 100 or num_voo3 > 99999):
                     print("\n => NÚMERO DE VOÔ INVÁLIDO! INSIRA UM NÚMERO DE 100 A 9999 <= ")
                     num_voo3 = int(input("\n\n Insira o número do voô: "))
+                while (num_voo3 not in voos.keys()) :
+                    print("\n => VOÔ NÃO CADASTRADO, TENTE NOVAMENTE <=")
+                    num_voo3 = int(input("\n\n Insira o código do voô: "))
+
                 if num_voo3 in voos.keys():
                     if voos[num_voo3][4] > 0:
                         voos[num_voo3][4] -= 1
-                        voos[num_voo3][5].append(cpf)
+                        voos[num_voo3][5].append(nome)
         
                         if n == 0:
                             passageiros[cpf] = [cpf, [num_voo3]]
                         else:
                             passageiros[cpf][1].append(num_voo3)
-                else:
-                    print("\n => VOÔ LOTADO! NÃO HÁ LUGARES DISPONÍVEIS <= ")
-    else:
-        print("\n => VOÔ NÃO ENCONTRADO <= ")
+                
 
 
     print("\n\n\t\t -*- PROGRAMA DE ATENDENTE DE VOÔS -*-")
