@@ -147,5 +147,16 @@ while (menu1 >=1 and menu1 <= 6) :
                 else :
                     passageiros[cpf][2][n + 1] = num_voo3
 
+    print("\n\n\t\t -*- PROGRAMA DE ATENDENTE DE VOÔS -*-")
+
+    print("\n\n\t\t\t >> MENU <<")
+    print("\n 1 - Cadastrar voô")
+    print("\n 2 - Consultar voô")
+    print("\n 3 - Informar voô com menor escala")
+    print("\n 4 - Listar passageiros do voô")
+    print("\n 5 - Venda de passagem")
+    print("\n 6 - Cancelamento de passagem")
+
+    menu1 = int(input("\n\n Insira qual deseja selecionar (1 a 6) - Zero para sair do programa: "))
         
         
