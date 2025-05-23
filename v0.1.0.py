@@ -10,7 +10,7 @@ def exibir_menu():
     print("\n 5 - Venda de passagem")
     print("\n 6 - Cancelamento de passagem")
 
-    menu_principal = menu_principal(1, 6)
+    menu_principal = verificar_menu(1, 6)
     
     return menu_principal
 
@@ -22,6 +22,7 @@ def cadastro_voo() :
     
     for i in range(num1) :
             num_voo1 = verificar_voo()
+
             cidade_origem = input("\n Cidade de origem: ")
             cidade_destino = input("\n Cidade de destino: ")
             num_escalas = int(input("\n Insira o número de escalas: "))
@@ -39,7 +40,7 @@ def menu_consulta() :
     print("\n 2 - Cidade de origem")
     print("\n 3 - Cidade de destino")
 
-    menu_consulta = opcao_menu(1, 3)
+    menu_consulta = verificar_menu(1, 3)
 
     return menu_consulta
 
@@ -116,10 +117,7 @@ def menor_escala() :
 def listar_passageiros() :
         print("\n\n\t\t -*- LISTAR PASSAGEIROS E LUGARES DE UM VOÔ -*-")
 
-        consulta_voo = int(input("\n\n Insira o código do voô: "))
-        while (consulta_voo not in voos.keys()) :
-            print("\n => VOÔ NÃO CADASTRADO, TENTE NOVAMENTE <=")
-            consulta_voo = int(input("\n\n Insira o código do voô: "))
+        consulta_voo = verificar_voo_compra()
         
         for num_voo, dados in voos.items() :
             if (consulta_voo == num_voo) :
@@ -135,10 +133,11 @@ def venda_passagem() :
     print("\n\n\t\t -*- VENDA DE PASSAGEM -*-")
         
     cpf_venda = verificar_cpf()
+    nome = input("\n Insira o nome completo do passageiro(a): ")
     fone = verificar_telefone()
 
     if (cpf_venda in passageiros.keys()) :
-        num_voo2 = verificar_voo()
+        num_voo2 = verificar_voo_compra()
         if (num_voo2 in passageiros[cpf_venda][1]): 
             print(f"\n => VOÔ JÁ FOI COMPRADO! INSIRA OUTRO CÓDIGO, POR FAVOR <=")
         else:
@@ -152,12 +151,11 @@ def venda_passagem() :
                     print("\n => NÃO HÁ LUGARES DISPONÍVEIS NESTE VOÔ <=")
             
     else:
-        nome = input("\n Insira o nome completo do passageiro(a): ")
         qt_voos = int(input("\n Quantos voôs deseja comprar: "))
 
         passagens_compradas = [] 
         for n in range(qt_voos) :
-            num_voo3 = verificar_voo()
+            num_voo3 = verificar_voo_compra()
 
             if num_voo3 in voos.keys():
                 if voos[num_voo3][4] > 0:
@@ -202,20 +200,20 @@ def cancelar_passagem() :
 
 def opcao_menu(i, f) :
     menu = int(input(f"\n\n Insira de {i} a {f} qual opção deseja selecionar: "))
-    while (menu_consulta < i or menu_consulta > f):
-            print("\n => OPÇÃO INVÁLIDA! FAVOR SELECIONAR DE 1 A 3 <=")
-            menu_consulta = int(input(f"\n\n Insira de {i} a {f} qual opção deseja selecionar: "))
+    while (menu < i or menu > f):
+            print(f"\n => OPÇÃO INVÁLIDA! FAVOR SELECIONAR DE {i} A {f} <=")
+            menu = int(input(f"\n\n Insira de {i} a {f} qual opção deseja selecionar: "))
     return menu
 
 
-def menu_principal(x, y) :
-    menu_opcao = int(input(f"\n\n Insira qual deseja selecionar de {x} a {y} - Zero para sair do programa: "))
+def verificar_menu(x, y) :
+    verificar_menu = int(input(f"\n\n Insira qual deseja selecionar de {x} a {y} - Zero para sair do programa: "))
 
-    while (menu_opcao < x or menu_opcao > y):
-        print("\n => OPÇÃO INVÁLIDA! FAVOR SELECIONAR DE 1 A 6 OU 0 PARA SAIR <=")
-        menu_opcao = int(input("\n\n Insira qual deseja selecionar (1 a 6) - Zero para sair do programa: "))
+    while (verificar_menu < x or verificar_menu > y):
+        print(f"\n => OPÇÃO INVÁLIDA! FAVOR SELECIONAR DE {x} A {y} OU 0 PARA SAIR <=")
+        verificar_menu = int(input(f"\n\n Insira qual deseja selecionar de {x} a {y} - Zero para sair do programa: "))
 
-    return menu_opcao
+    return verificar_menu
 
 
 def verificar_cpf() :
@@ -265,6 +263,14 @@ def verificar_telefone() :
             telefone = input("\n\n Insira o número de telefone no modelo (XX) XXXXX-XXXX : ")
 
     return telefone
+
+def verificar_voo_compra() :
+    num_voo = int(input("\n\n Insira o número do voô: "))
+    while (num_voo not in voos.keys()) :
+        print("\n => VOÔ NÃO EXISTENTE, TENTE NOVAMENTE <= ")
+        num_voo = int(input("\n\n Insira o número do voô: "))
+    
+    return num_voo
 
 
 voos = {}
