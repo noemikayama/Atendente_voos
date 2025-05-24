@@ -9,8 +9,9 @@ def exibir_menu():
     print("\n 4 - Listar passageiros do voô")
     print("\n 5 - Venda de passagem")
     print("\n 6 - Cancelamento de passagem")
+    print("\n 7 - Sair do programa")
 
-    menu_principal = verificar_menu(1, 6)
+    menu_principal = opcao_menu(1, 7)
     
     return menu_principal
 
@@ -22,7 +23,7 @@ def cadastro_voo() :
     
     for i in range(num1) :
             num_voo1 = verificar_voo()
-
+        
             cidade_origem = input("\n Cidade de origem: ")
             cidade_destino = input("\n Cidade de destino: ")
             num_escalas = int(input("\n Insira o número de escalas: "))
@@ -33,6 +34,7 @@ def cadastro_voo() :
             voos[num_voo1] = [cidade_origem, cidade_destino, num_escalas, preco, lugares_disponiveis, passagens]
 
 
+
 def menu_consulta() :
     print("\n\n\t\t -*- CONSULTAR VOÔ -*- ")
     print("\n\n\t Como deseja consultar o voô? ")
@@ -40,7 +42,7 @@ def menu_consulta() :
     print("\n 2 - Cidade de origem")
     print("\n 3 - Cidade de destino")
 
-    menu_consulta = verificar_menu(1, 3)
+    menu_consulta = opcao_menu(1, 3)
 
     return menu_consulta
 
@@ -138,6 +140,7 @@ def venda_passagem() :
 
     if (cpf_venda in passageiros.keys()) :
         num_voo2 = verificar_voo_compra()
+
         if (num_voo2 in passageiros[cpf_venda][1]): 
             print(f"\n => VOÔ JÁ FOI COMPRADO! INSIRA OUTRO CÓDIGO, POR FAVOR <=")
         else:
@@ -180,20 +183,19 @@ def cancelar_passagem() :
     if cpf_cancelamento in passageiros.keys():
         voo_cancelar = int(input("\n\n Insira o número do voô: "))
         
-        if voo_cancelar in passageiros[cpf_cancelamento][1]:
+        if voo_cancelar in passageiros[cpf_cancelamento][2]:
             nome_passageiro_cancelar = passageiros[cpf_cancelamento][0]
-            passageiros[cpf_cancelamento][1].remove(voo_cancelar)
+            passageiros[cpf_cancelamento][2].remove(voo_cancelar)
             
             if voo_cancelar in voos.keys():
                 voos[voo_cancelar][4] += 1
                 if nome_passageiro_cancelar in voos[voo_cancelar][5]:
                     voos[voo_cancelar][5].remove(nome_passageiro_cancelar)
-            print(f"\n => PASSAGEM DO VOÔ {voo_cancelar} PARA {nome_passageiro_cancelar} CANCELADA COM SUCESSO! <= ")
+                print(f"\n => PASSAGEM DO VOÔ {voo_cancelar} PARA {nome_passageiro_cancelar} CANCELADA COM SUCESSO! <= ")
             
-            if not passageiros[cpf_cancelamento][1]: 
+            if not passageiros[cpf_cancelamento][2]: 
                 del passageiros[cpf_cancelamento]
-        else:
-            print(f"\n => O PASSAGEIRO COM CPF {cpf_cancelamento} NÃO POSSUI PASSAGEM PARA O VOÔ {voo_cancelar} <= ")
+                print(f"\n => O PASSAGEIRO COM CPF {cpf_cancelamento} NÃO POSSUI PASSAGEM PARA O VOÔ {voo_cancelar} <= ")
     else:
         print("\n => CPF NÃO ENCONTRADO NO CADASTRO DE PASSAGEIROS <= ")
 
@@ -204,16 +206,6 @@ def opcao_menu(i, f) :
             print(f"\n => OPÇÃO INVÁLIDA! FAVOR SELECIONAR DE {i} A {f} <=")
             menu = int(input(f"\n\n Insira de {i} a {f} qual opção deseja selecionar: "))
     return menu
-
-
-def verificar_menu(x, y) :
-    verificar_menu = int(input(f"\n\n Insira qual deseja selecionar de {x} a {y} - Zero para sair do programa: "))
-
-    while (verificar_menu < x or verificar_menu > y):
-        print(f"\n => OPÇÃO INVÁLIDA! FAVOR SELECIONAR DE {x} A {y} OU 0 PARA SAIR <=")
-        verificar_menu = int(input(f"\n\n Insira qual deseja selecionar de {x} a {y} - Zero para sair do programa: "))
-
-    return verificar_menu
 
 
 def verificar_cpf() :
@@ -272,6 +264,8 @@ def verificar_voo_compra() :
     
     return num_voo
 
+    
+
 
 voos = {}
 passageiros = {} 
@@ -311,7 +305,7 @@ while (menu1 >=1 and menu1 <= 6) :
     if (menu1 == 6) :
         cancelar_passagem()
 
-    if (menu1 == 0) :
+    if (menu1 == 7) :
         break
 
     menu1 = exibir_menu() 
