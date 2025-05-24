@@ -155,7 +155,7 @@ def venda_passagem() :
 
         passagens_compradas = [] 
         for n in range(qt_voos) :
-            num_voo3 = verificar_voo_compra()
+            num_voo3 = int(input("\n\n Insira o número do voô: "))
 
             if num_voo3 in voos.keys():
                 if voos[num_voo3][4] > 0:
