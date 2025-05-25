@@ -1,6 +1,6 @@
 passageiros = []
 voos = {}
-voos = {'numero do voo' : [cidade origem, cidade destino, nº escalas, preço, lugares disponíveis, [passageiros]]}
+voos = {'numero do voo' : [cidade origem, cidade destino, nº escalas, preço, lugares disponíveis, [passageiros (nome)]]}
 
 passagens = []
 passageiros = {}

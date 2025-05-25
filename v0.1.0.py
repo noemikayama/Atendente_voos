@@ -5,7 +5,7 @@ def exibir_menu():
     print("\n\n\t\t\t >> MENU <<")
     print("\n 1 - Cadastrar voo")
     print("\n 2 - Consultar voo")
-    print("\n 3 - Informar voo com menor escala")
+    print("\n 3 - Informar voos com menor escala")
     print("\n 4 - Listar passageiros do voo")
     print("\n 5 - Venda de passagem")
     print("\n 6 - Cancelamento de passagem")
