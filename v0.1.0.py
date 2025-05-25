@@ -297,10 +297,10 @@ def verificar_voo_compra():
 
 
 def confirmar() :
-    confirmar = int(input("\n Deseja mesmo cancelar a passagem? Digite 1 para 'SIM'e 2 para 'NÃO' : "))
+    confirmar = int(input("\n Deseja mesmo cancelar a passagem? Digite 1 para 'SIM' e 2 para 'NÃO' : "))
     while (confirmar < 1 or confirmar > 2):
         print(f"\n => OPÇÃO INVÁLIDA! FAVOR SELECIONAR DE 1 OU 2 <=")
-        confirmar = int(input("\n Deseja mesmo cancelar a passagem? Digite 1 para 'SIM'e 2 para 'NÃO' : "))
+        confirmar = int(input("\n Deseja mesmo cancelar a passagem? Digite 1 para 'SIM' e 2 para 'NÃO' : "))
     return confirmar
 
 
