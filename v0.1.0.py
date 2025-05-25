@@ -15,6 +15,7 @@ def exibir_menu():
     
     return menu_principal
 
+
 def cadastro_voo():
     print("\n\n\t\t -*- CADASTRAR UM VOÔ -*- ")
 
@@ -28,13 +29,23 @@ def cadastro_voo():
         cidade_origem = input("\n Cidade de origem: ")
         cidade_destino = input("\n Cidade de destino: ")
         num_escalas = int(input("\n Insira o número de escalas: "))
+        while (num_escalas < 0):
+            print("\n => NÚMERO INVÁLIDO DE ESCALAS! DIGITE UM NÚMERO MAIOR OU IGUAL A ZERO <=")
+            num_escalas = int(input("\n Insira o número de escalas: "))
         preco = float(input("\n Insira o valor: R$"))
+        while (preco < 0):
+            print("\n => PREÇO INVÁLIDO! DIGITE UM NÚMERO MAIOR OU IGUAL A ZERO <=")
+            preco = float(input("\n Insira o valor: R$"))
         lugares_disponiveis = int(input("\n Insira o número de lugares disponíveis: "))
+        while (lugares_disponiveis < 0):
+            print("\n => NÚMERO INVÁLIDO DE LUGARES! DIGITE UM NÚMERO MAIOR OU IGUAL A ZERO <=")
+            lugares_disponiveis = int(input("\n Insira o número de lugares disponíveis: "))
         passagens = []
 
         voos[num_voo1] = [cidade_origem, cidade_destino, num_escalas, preco, lugares_disponiveis, passagens]
 
         lista_voos.append([num_voo1, cidade_origem, cidade_destino, num_escalas, preco, lugares_disponiveis])
+
 
 def mostrar_voos_disponiveis():
     print("\n\n\t\t -*- VOÔS DISPONÍVEIS -*-")
@@ -45,6 +56,7 @@ def mostrar_voos_disponiveis():
             if lista_voos[i][5] > 0 :
                 print(f"\n >> VOÔ {lista_voos[i][0]} | Origem: {lista_voos[i][1]} | Destino: {lista_voos[i][2]} | Escalas: {lista_voos[i][3]} | Preço: R$ {lista_voos[i][4]:.2f} | Lugares disponíveis: {lista_voos[i][5]}")
 
+
 def menu_consulta():
     print("\n\n\t\t -*- CONSULTAR VOÔ -*- ")
     print("\n\n\t Como deseja consultar o voô? ")
@@ -54,6 +66,7 @@ def menu_consulta():
 
     menu_consulta = opcao_menu(1, 3)
     return menu_consulta
+
 
 def pesquisa_voo():
     consulta_num = int(input("\n\n Qual voô deseja consultar?"))
@@ -70,6 +83,7 @@ def pesquisa_voo():
             print(f"\n Preço: R$ {dados[3]:.2f}")
             print(f"\n Lugares disponíveis: {dados[4]}")
 
+
 def cidade_origem():
     consulta_origem = input("\n Insira a cidade de origem que deseja pesquisar: ").lower()
     
@@ -83,6 +97,7 @@ def cidade_origem():
     if not encontrado:
         print("\n => NENHUM VOÔ ENCONTRADO PARA ESTA CIDADE DE ORIGEM <=")
 
+
 def cidade_destino():
     consulta_destino = input("\n Insira a cidade de destino que deseja pesquisar: ").lower()
     
@@ -95,6 +110,7 @@ def cidade_destino():
             encontrado = True
     if not encontrado:
         print("\n => NENHUM VOÔ ENCONTRADO PARA ESTA CIDADE DE DESTINO <=")
+
 
 def menor_escala():
     print("\n\n\t\t -*- INFORMAR VOÔ COM MENOR ESCALA -*- ")
@@ -133,6 +149,7 @@ def listar_passageiros():
             else:
                 print(f"\n\t Não há passageiros cadastrados para o voô {consulta_voo}.")
             print(f"\n\t O voô {num_voo} possui {dados[4]} lugares disponíveis")
+
 
 def venda_passagem():
     print("\n\n\t\t -*- VENDA DE PASSAGEM -*-")
@@ -184,6 +201,7 @@ def venda_passagem():
         else:
             print("\n => NENHUMA PASSAGEM FOI COMPRADA PARA ESTE CPF <=")
 
+
 def cancelar_passagem():
     print("\n\n\t\t -*- CANCELAMENTO DE PASSAGEM -*-")
     
@@ -212,12 +230,14 @@ def cancelar_passagem():
     else:
         print("\n => CPF NÃO ENCONTRADO NO CADASTRO DE PASSAGEIROS <= ")
 
+
 def opcao_menu(i, f):
     menu = int(input(f"\n\n Insira de {i} a {f} qual opção deseja selecionar: "))
     while (menu < i or menu > f):
         print(f"\n => OPÇÃO INVÁLIDA! FAVOR SELECIONAR DE {i} A {f} <=")
         menu = int(input(f"\n\n Insira de {i} a {f} qual opção deseja selecionar: "))
     return menu
+
 
 def verificar_cpf():
     cpf = input("\n\n Insira o CPF do passageiro para cancelamento no modelo xxx.xxx.xxx-xx: ")
@@ -227,6 +247,7 @@ def verificar_cpf():
         cpf = input("\n\n Insira o CPF do passageiro para o cancelamento no modelo xxx.xxx.xxx-xx: ")
 
     return cpf
+
 
 def verificar_voo():
     num_voo = int(input("\n\n Insira o número do voô: "))
@@ -239,6 +260,7 @@ def verificar_voo():
 
     return num_voo
 
+
 def menu_telefone():
     print("\n\n Qual tipo de telefone deseja cadastrar?")
     print("\n 1 - Fixo")
@@ -246,6 +268,7 @@ def menu_telefone():
 
     menu_telefone = opcao_menu(1, 2)
     return menu_telefone
+
 
 def verificar_telefone():
     opcao_telefone = menu_telefone()
@@ -262,6 +285,7 @@ def verificar_telefone():
             telefone = input("\n\n Insira o número de telefone no modelo (XX) XXXXX-XXXX : ")
 
     return telefone
+
 
 def verificar_voo_compra():
     num_voo = int(input("\n\n Insira o número do voô: "))
