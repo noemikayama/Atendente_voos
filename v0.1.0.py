@@ -46,7 +46,7 @@ def cadastro_voo():
 
 
 def mostrar_voos_disponiveis():
-    print("\n\n\t\t -*- voos DISPONÍVEIS -*-")
+    print("\n\n\t\t -*- VOOS DISPONÍVEIS -*-")
     if not voos:
         print("\n => NENHUM VOOS CADASTRADO NO SISTEMA <= ")
     else:
@@ -88,7 +88,7 @@ def cidade_origem():
     encontrado = False
     for num_voo, dados in voos.items():
         if (consulta_origem == dados[0].lower()):
-            print(f"\n\n\t\t\t >> voo {num_voo} <<")
+            print(f"\n\n\t\t\t >> VOO {num_voo} <<")
             print(f"\n Cidade de destino: {dados[1]}")
             print(f"\n Preço: R$ {dados[3]:.2f}")
             encontrado = True
@@ -102,7 +102,7 @@ def cidade_destino():
     encontrado = False
     for num_voo, dados in voos.items():
         if (consulta_destino == dados[1].lower()):
-            print(f"\n\n\t\t\t >> voo {num_voo} <<")
+            print(f"\n\n\t\t\t >> VOO {num_voo} <<")
             print(f"\n Cidade de origem: {dados[0]}")
             print(f"\n Preço: R$ {dados[3]:.2f}")
             encontrado = True
