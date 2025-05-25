@@ -153,32 +153,37 @@ def venda_passagem():
     print("\n\n\t\t -*- VENDA DE PASSAGEM -*-")
         
     cpf_venda = verificar_cpf()
-    nome = input("\n Insira o nome completo do passageiro(a): ")
-    fone = verificar_telefone()
 
     if (cpf_venda in passageiros.keys()):
-        mostrar_voos_disponiveis()
-        num_voo2 = verificar_voo_compra()
+        qt_voos1 = int(input("\n Quantos voos deseja comprar: "))
 
-        if (num_voo2 in passageiros[cpf_venda][2]):
-            print(f"\n => VOO JÁ FOI COMPRADO! INSIRA OUTRO CÓDIGO, POR FAVOR <=")
-        else:
-            if num_voo2 in voos.keys():
-                if (voos[num_voo2][4] > 0):
-                    voos[num_voo2][4] -= 1
-                    voos[num_voo2][5].append(passageiros[cpf_venda][0]) 
-                    passageiros[cpf_venda][2].append(num_voo2)
-                    print(f"\n => PASSAGEM PARA O VOO {num_voo2} VENDIDA COM SUCESSO! <= ")
-                else:
-                    print("\n => NÃO HÁ LUGARES DISPONÍVEIS NESTE VOO <=")
+        for n in range(qt_voos1):
+            mostrar_voos_disponiveis()
+            num_voo2 = verificar_voo_compra()
+
+            if (num_voo2 in passageiros[cpf_venda][2]):
+                print(f"\n => VOO JÁ FOI COMPRADO! INSIRA OUTRO CÓDIGO, POR FAVOR <=")
+            else:
+                if num_voo2 in voos.keys():
+                    if (voos[num_voo2][4] > 0):
+                        voos[num_voo2][4] -= 1
+                        voos[num_voo2][5].append(passageiros[cpf_venda][0]) 
+                        passageiros[cpf_venda][2].append(num_voo2)
+                        print(f"\n => PASSAGEM PARA O VOO {num_voo2} VENDIDA COM SUCESSO! <= ")
+                    else:
+                        print("\n => NÃO HÁ LUGARES DISPONÍVEIS NESTE VOO <=")
+                else: 
+                    print("\n => VOO NÃO CADASTRADO <=")
             
     else:
-        qt_voos = int(input("\n Quantos voos deseja comprar: "))
+        nome = input("\n Insira o nome completo do passageiro(a): ")
+        fone = verificar_telefone()
+        qt_voos2 = int(input("\n Quantos voos deseja comprar: "))
 
         passagens_compradas = [] 
-        for n in range(qt_voos):
+        for n in range(qt_voos2):
             mostrar_voos_disponiveis()
-            num_voo3 = int(input("\n\n Insira o número do voo: "))
+            num_voo3 = verificar_voo_compra()
 
             if num_voo3 in voos.keys():
                 if voos[num_voo3][4] > 0:
@@ -190,15 +195,13 @@ def venda_passagem():
                             lista_voos[i][5] = depois
                     voos[num_voo3][5].append(nome)
                     passagens_compradas.append(num_voo3)
-                    passageiros[cpf_venda][2].append(passagens_compradas)
+                    passageiros[cpf_venda] = [nome, fone, passagens_compradas]
                     print(f"\n => PASSAGEM PARA O VOO {num_voo3} VENDIDA COM SUCESSO PARA {nome}! <= ")
                 else:
                     print(f"\n => NÃO HÁ LUGARES DISPONÍVEIS NO VOO {num_voo3} <=")
+            else :
+                print("\n => ESSA PASSAGEM JÁ FOI COMPRADA <=")
         
-        if (len(passagens_compradas) > 0):
-            passageiros[cpf_venda] = [nome, fone, passagens_compradas]
-        else:
-            print("\n => NENHUMA PASSAGEM FOI COMPRADA PARA ESTE CPF <=")
 
 
 def cancelar_passagem():
