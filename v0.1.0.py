@@ -109,14 +109,14 @@ def menor_escala():
                 voo = num_voo
             else:
                 if dados[2] == menor:
-                    print(f"\n\n O voô de {escala_origem} para {escala_destino} com menor escala é o voô {num_voo} com {menor} escalas")
+                    print(f"\n\n O voô de {escala_origem.title()} para {escala_destino.title()} com menor escala é o voô {num_voo} com {menor} escalas")
     
     if voo is not None:
-        print(f"\n\n O voô de {escala_origem} para {escala_destino} com menor escala é o voô {voo} com {menor} escalas")
+        print(f"\n\n O voô de {escala_origem.title()} para {escala_destino.title()} com menor escala é o voô {voo} com {menor} escalas")
     else:
-        print(f"\n => NENHUM VOÔ ENCONTRADO DE {escala_origem} PARA {escala_destino} <= ")
+        print(f"\n => NENHUM VOÔ ENCONTRADO DE {escala_origem.title()} PARA {escala_destino.title()} <= ")
     
-    
+
 def listar_passageiros():
     print("\n\n\t\t -*- LISTAR PASSAGEIROS E LUGARES DE UM VOÔ -*-")
 
