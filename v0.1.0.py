@@ -208,7 +208,7 @@ def cancelar_passagem():
     cpf_cancelamento = verificar_cpf()
 
     if cpf_cancelamento in passageiros.keys():
-        voo_cancelar = int(input("\n\n Insira o número do voô: "))
+        voo_cancelar = verificar_voo_compra()
         
         if voo_cancelar in passageiros[cpf_cancelamento][2]:
             nome_passageiro_cancelar = passageiros[cpf_cancelamento][0]
