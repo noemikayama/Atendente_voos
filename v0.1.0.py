@@ -19,7 +19,7 @@ def exibir_menu():
 def cadastro_voo():
     print("\n\n\t\t -*- CADASTRAR UM VOÔ -*- ")
 
-    voos_disponiveis = []
+    lista_voos = []
 
     num1 = int(input("\n\n Insira quantos voôs deseja cadastrar: "))
 
