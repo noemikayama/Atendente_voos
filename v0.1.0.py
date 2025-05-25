@@ -18,8 +18,7 @@ def exibir_menu():
 def cadastro_voo():
     print("\n\n\t\t -*- CADASTRAR UM VOÔ -*- ")
 
-    lista_voos = []
-    voos = {}
+    voos_disponiveis = []
 
     num1 = int(input("\n\n Insira quantos voôs deseja cadastrar: "))
 
@@ -42,9 +41,9 @@ def mostrar_voos_disponiveis():
     if not voos:
         print("\n => NENHUM VOÔ CADASTRADO NO SISTEMA <= ")
     else:
-        if (lista_voos[5] > 0) :
-            for voo_info in lista_voos:
-                print(f"\n >> VOÔ {voo_info[0]} | Origem: {voo_info[1]} | Destino: {voo_info[2]} | Escalas: {voo_info[3]} | Preço: R$ {voo_info[4]:.2f} | Lugares disponíveis: {voo_info[5]}")
+        for i in range (len(lista_voos)) :
+            if lista_voos[i][5] > 0 :
+                print(f"\n >> VOÔ {lista_voos[i][0]} | Origem: {lista_voos[i][1]} | Destino: {lista_voos[i][2]} | Escalas: {lista_voos[i][3]} | Preço: R$ {lista_voos[i][4]:.2f} | Lugares disponíveis: {lista_voos[i][5]}")
 
 def menu_consulta():
     print("\n\n\t\t -*- CONSULTAR VOÔ -*- ")
@@ -151,9 +150,6 @@ def venda_passagem():
         else:
             if num_voo2 in voos.keys():
                 if (voos[num_voo2][4] > 0):
-                    antes = lista_voos[5]
-                    depois = antes - 1
-                    lista_voos[5] = depois
                     voos[num_voo2][4] -= 1
                     voos[num_voo2][5].append(passageiros[cpf_venda][0]) 
                     passageiros[cpf_venda][1].append(num_voo2)
@@ -172,7 +168,11 @@ def venda_passagem():
             if num_voo3 in voos.keys():
                 if voos[num_voo3][4] > 0:
                     voos[num_voo3][4] -= 1
-                    lista_voos
+                    for i in range (len(lista_voos)) :
+                        if (lista_voos[i][0] == num_voo3):
+                            antes = lista_voos[i][5]
+                            depois = antes - 1
+                            lista_voos[i][5] = depois
                     voos[num_voo3][5].append(nome)
                     passagens_compradas.append(num_voo3)
                     print(f"\n => PASSAGEM PARA O VOÔ {num_voo3} VENDIDA COM SUCESSO PARA {nome}! <= ")
@@ -194,17 +194,21 @@ def cancelar_passagem():
         
         if voo_cancelar in passageiros[cpf_cancelamento][2]:
             nome_passageiro_cancelar = passageiros[cpf_cancelamento][0]
-            passageiros[cpf_cancelamento][2].remove(voo_cancelar)
-            
-            if voo_cancelar in voos.keys():
-                voos[voo_cancelar][4] += 1
-                if nome_passageiro_cancelar in voos[voo_cancelar][5]:
-                    voos[voo_cancelar][5].remove(nome_passageiro_cancelar)
-                print(f"\n => PASSAGEM DO VOÔ {voo_cancelar} PARA {nome_passageiro_cancelar} CANCELADA COM SUCESSO! <= ")
-            
-            if not passageiros[cpf_cancelamento][2]: 
-                del passageiros[cpf_cancelamento]
-                print(f"\n => O PASSAGEIRO COM CPF {cpf_cancelamento} NÃO POSSUI PASSAGEM PARA O VOÔ {voo_cancelar} <= ")
+            resposta = confirmar()
+            if (resposta == 1) :
+                passageiros[cpf_cancelamento][2].remove(voo_cancelar)
+                
+                if voo_cancelar in voos.keys():
+                    voos[voo_cancelar][4] += 1
+                    if nome_passageiro_cancelar in voos[voo_cancelar][5]:
+                        voos[voo_cancelar][5].remove(nome_passageiro_cancelar)
+                    print(f"\n => PASSAGEM DO VOÔ {voo_cancelar} PARA {nome_passageiro_cancelar} CANCELADA COM SUCESSO! <= ")
+                
+                if not passageiros[cpf_cancelamento][2]: 
+                    del passageiros[cpf_cancelamento]
+                    print(f"\n => O PASSAGEIRO COM CPF {cpf_cancelamento} NÃO POSSUI PASSAGEM PARA O VOÔ {voo_cancelar} <= ")
+            else :
+                print("\n => PASSAGEM NÃO CANCELADA! VOCÊ SERÁ DIRECIONADO PARA O MENU PRINCIPAL <=")
     else:
         print("\n => CPF NÃO ENCONTRADO NO CADASTRO DE PASSAGEIROS <= ")
 
@@ -266,6 +270,14 @@ def verificar_voo_compra():
         num_voo = int(input("\n\n Insira o número do voô: "))
     
     return num_voo
+
+
+def confirmar() :
+    confirmar = int(input("\n Deseja mesmo cancelar a passagem? Digite 1 para 'SIM'e 2 para 'NÃO' : "))
+    while (confirmar < 1 or confirmar > 2):
+        print(f"\n => OPÇÃO INVÁLIDA! FAVOR SELECIONAR DE 1 OU 2 <=")
+        confirmar = int(input("\n Deseja mesmo cancelar a passagem? Digite 1 para 'SIM'e 2 para 'NÃO' : "))
+    return confirmar
 
 
 voos = {}
