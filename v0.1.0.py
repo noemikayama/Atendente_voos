@@ -18,6 +18,9 @@ def exibir_menu():
 def cadastro_voo():
     print("\n\n\t\t -*- CADASTRAR UM VOÔ -*- ")
 
+    lista_voos = []
+    voos = {}
+
     num1 = int(input("\n\n Insira quantos voôs deseja cadastrar: "))
 
     for i in range(num1):
@@ -39,8 +42,9 @@ def mostrar_voos_disponiveis():
     if not voos:
         print("\n => NENHUM VOÔ CADASTRADO NO SISTEMA <= ")
     else:
-        for voo_info in lista_voos:
-            print(f"\n >> VOÔ {voo_info[0]} | Origem: {voo_info[1]} | Destino: {voo_info[2]} | Escalas: {voo_info[3]} | Preço: R$ {voo_info[4]:.2f} | Lugares disponíveis: {voo_info[5]}")
+        if (lista_voos[5] > 0) :
+            for voo_info in lista_voos:
+                print(f"\n >> VOÔ {voo_info[0]} | Origem: {voo_info[1]} | Destino: {voo_info[2]} | Escalas: {voo_info[3]} | Preço: R$ {voo_info[4]:.2f} | Lugares disponíveis: {voo_info[5]}")
 
 def menu_consulta():
     print("\n\n\t\t -*- CONSULTAR VOÔ -*- ")
@@ -147,6 +151,9 @@ def venda_passagem():
         else:
             if num_voo2 in voos.keys():
                 if (voos[num_voo2][4] > 0):
+                    antes = lista_voos[5]
+                    depois = antes - 1
+                    lista_voos[5] = depois
                     voos[num_voo2][4] -= 1
                     voos[num_voo2][5].append(passageiros[cpf_venda][0]) 
                     passageiros[cpf_venda][1].append(num_voo2)
@@ -165,6 +172,7 @@ def venda_passagem():
             if num_voo3 in voos.keys():
                 if voos[num_voo3][4] > 0:
                     voos[num_voo3][4] -= 1
+                    lista_voos
                     voos[num_voo3][5].append(nome)
                     passagens_compradas.append(num_voo3)
                     print(f"\n => PASSAGEM PARA O VOÔ {num_voo3} VENDIDA COM SUCESSO PARA {nome}! <= ")
