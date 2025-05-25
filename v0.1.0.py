@@ -19,8 +19,6 @@ def exibir_menu():
 def cadastro_voo():
     print("\n\n\t\t -*- CADASTRAR UM VOOS -*- ")
 
-    lista_voos = []
-
     num1 = int(input("\n\n Insira quantos voos deseja cadastrar: "))
 
     for i in range(num1):
@@ -40,9 +38,9 @@ def cadastro_voo():
         while (lugares_disponiveis < 0):
             print("\n => NÚMERO INVÁLIDO DE LUGARES! DIGITE UM NÚMERO MAIOR OU IGUAL A ZERO <=")
             lugares_disponiveis = int(input("\n Insira o número de lugares disponíveis: "))
-        passagens = []
+        passagens_vendidas = []
 
-        voos[num_voo1] = [cidade_origem, cidade_destino, num_escalas, preco, lugares_disponiveis, passagens]
+        voos[num_voo1] = [cidade_origem, cidade_destino, num_escalas, preco, lugares_disponiveis, passagens_vendidas]
 
         lista_voos.append([num_voo1, cidade_origem, cidade_destino, num_escalas, preco, lugares_disponiveis])
 
@@ -162,14 +160,14 @@ def venda_passagem():
         mostrar_voos_disponiveis()
         num_voo2 = verificar_voo_compra()
 
-        if (num_voo2 in passageiros[cpf_venda][1]):
+        if (num_voo2 in passageiros[cpf_venda][2]):
             print(f"\n => VOO JÁ FOI COMPRADO! INSIRA OUTRO CÓDIGO, POR FAVOR <=")
         else:
             if num_voo2 in voos.keys():
                 if (voos[num_voo2][4] > 0):
                     voos[num_voo2][4] -= 1
                     voos[num_voo2][5].append(passageiros[cpf_venda][0]) 
-                    passageiros[cpf_venda][1].append(num_voo2)
+                    passageiros[cpf_venda][2].append(num_voo2)
                     print(f"\n => PASSAGEM PARA O VOO {num_voo2} VENDIDA COM SUCESSO! <= ")
                 else:
                     print("\n => NÃO HÁ LUGARES DISPONÍVEIS NESTE VOO <=")
@@ -192,6 +190,7 @@ def venda_passagem():
                             lista_voos[i][5] = depois
                     voos[num_voo3][5].append(nome)
                     passagens_compradas.append(num_voo3)
+                    passageiros[cpf_venda][2].append(passagens_compradas)
                     print(f"\n => PASSAGEM PARA O VOO {num_voo3} VENDIDA COM SUCESSO PARA {nome}! <= ")
                 else:
                     print(f"\n => NÃO HÁ LUGARES DISPONÍVEIS NO VOO {num_voo3} <=")
