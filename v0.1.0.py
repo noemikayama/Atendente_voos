@@ -124,13 +124,13 @@ def menor_escala():
             if (dados[2] < menor) :
                 menor = dados[2]
                 voo = num_voo
-            else:
-                if dados[2] == menor:
-                    print(f"\n\n O voo de {escala_origem.upper()} para {escala_destino.upper()} com menor escala é o voo {num_voo} com {menor} escalas")
-    
-    if voo is not None:
-        print(f"\n\n O voo de {escala_origem.upper()} para {escala_destino.upper()} com menor escala é o voo {voo} com {menor} escalas")
-    else:
+
+    for num_voo, dados in voos.items() :
+        if (dados[0].lower() == escala_origem and dados[1].lower() == escala_destino) :
+            if (dados[2] == menor) :
+                print(f"\n\n O voo de {escala_origem.upper()} para {escala_destino.upper()} com menor escala é o voo {num_voo} com {menor} escalas")
+        
+    if voo is None:
         print(f"\n => NENHUM VOO ENCONTRADO DE {escala_origem.upper()} PARA {escala_destino.upper()} <= ")
     
 
@@ -345,4 +345,4 @@ while (menu1 >=1 and menu1 <= 6):
 
     menu1 = exibir_menu()
         
-print("\n\n\t\t -*- PROGRAMA ENCERRADO -*-")
+print("\n\n\t\t -*- PROGRAMA ENCERRADO -*- \n\n\n")
